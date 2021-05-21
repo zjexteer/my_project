@@ -25,13 +25,14 @@ pipeline {
                      withCredentials([string(credentialsId: 'mawlstace', variable: 'CREDS')]) {
 				sh 'docker login -u mawlstace -p ${CREDS}'
 			}
-   def image = 'mawlstace/my-nginx:'+ params.env
-   sh ' docker build -t ${image} .'
-   sh ' docker push '              
+  image = "mawlstace/my-nginx:"  + params.env
+   sh " docker build -t ${image} ."
+   sh " docker push  ${image} "              
 }
           } 
         }
   }
 
 }
+
 
