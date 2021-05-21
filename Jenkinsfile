@@ -1,9 +1,5 @@
 pipeline {
     
-  environment {
-
-  }
-  
   agent {
     label 'any'
   }
