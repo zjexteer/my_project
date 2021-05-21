@@ -4,9 +4,6 @@ pipeline {
   
   
   stages {
-  parameters {
-    choice(name:'env', choices: ['dev','test' , 'prod'] )
-  }
 
        
         stage('Git Clone Code') {
