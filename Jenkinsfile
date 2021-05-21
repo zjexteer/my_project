@@ -4,6 +4,10 @@ pipeline {
   
   
   stages {
+  rameters {
+    choice(name:'env', choices: 'dev\ntest\nprod',defaultValue:'dev')
+  }
+
        
         stage('Git Clone Code') {
            steps {
