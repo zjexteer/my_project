@@ -13,7 +13,7 @@ pipeline {
         stage('Git Clone Code') {
            steps {
                 script {
-                          git branch: ${env.GIT_BRANCH} credentialsId: '', url: 'https://github.com/zjexteer/my_project.git'
+                          git branch: env.GIT_BRANCH, url: 'https://github.com/zjexteer/my_project.git'
                 }
            }
         }
