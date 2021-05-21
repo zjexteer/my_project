@@ -26,7 +26,7 @@ pipeline {
 
           steps {
              script{    
-                    dockerImage = docker.build mawlstace/my-nginx:env.GIT_BRANCH 
+                    dockerImage = docker.build mawlstace/my-nginx:${env.GIT_BRANCH} 
                     docker.withRegistry( '', 'docker_hub' ) { 
                         dockerImage.push()
                         } 
