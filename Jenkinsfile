@@ -4,15 +4,15 @@ pipeline {
   
   
   stages {
-  rameters {
-    choice(name:'env', choices: 'dev\ntest\nprod',defaultValue:'dev')
+  parameters {
+    choice(name:'env', choices: ['dev','test' , 'prod'] )
   }
 
        
         stage('Git Clone Code') {
            steps {
                 script {
-                          git branch: env.GIT_BRANCH, url: 'https://github.com/zjexteer/my_project.git'
+                          git branch: params.env, url: 'https://github.com/zjexteer/my_project.git'
                 }
            }
         }
@@ -25,7 +25,7 @@ pipeline {
 
           steps {
              script{    
-                    dockerImage = docker.build 'mawlstace/my-nginx:' +${env.GIT_BRANCH} 
+                    dockerImage = docker.build 'mawlstace/my-nginx:' +params.env 
                     docker.withRegistry( '', 'docker_hub' ) { 
                         dockerImage.push()
                         } 
