@@ -21,12 +21,13 @@ pipeline {
 
 
           steps {
-             script{    
-                    dockerImage = docker.build 'mawlstace/my-nginx:' +params.env 
-                    docker.withRegistry( '', 'docker_hub' ) { 
-                        dockerImage.push()
-                        } 
-             }
+             script{
+                     withCredentials([string(credentialsId: 'mawlstace', variable: 'CREDS')]) {
+				sh 'docker login -u mawlstace -p ${CREDS}'
+			}
+   sh ' docker build -t mawlstace/my-nginx:${params.env}'
+   sh ' docker push '              
+}
           } 
         }
   }
